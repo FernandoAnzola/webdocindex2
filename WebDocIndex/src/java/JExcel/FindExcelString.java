@@ -28,12 +28,11 @@ public class FindExcelString
             List worksheets = workbook.getWorksheets();
 
         for (int i = 0; i < worksheets.size(); i++)
-
         {
             //Seleccionamos TODAS las hojas de 1 en 1 (reccoriendo la lista)
             Worksheet worksheet = (Worksheet)worksheets.get(i);
             
-            //Ahora seleccionamos el rango
+            //Ahora seleccionamos el rango (TODO LA HOJA)
             Range range = worksheet.selectAll();
             
             //Especificacion de los atributos de busqueda
@@ -52,7 +51,7 @@ public class FindExcelString
             {
                 //Encontrado
             }
-
+            //Necesita mirar si esa celda tiene celda siguiente
             cell = range.findNext();
             if (cell == null)
             {
