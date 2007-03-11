@@ -12,11 +12,10 @@ public class FindExcelString
 {
     
 
-    public static void main(String[] args) throws ExcelException
+    public static void Finder (String strValue) throws ExcelException
     {
-        //String a buscar pedido
-        String strValue ="";
-        //Abrimos el archivo
+        //Recibimos el string a buscar en el archivo EXCEL
+        //Abrimos el archivo, debemos pasar el PATH
         File xlsFile = new File ("C:\\pablo.xls");
         Application application = new Application();
         Workbook workbook;
@@ -29,7 +28,7 @@ public class FindExcelString
 
         for (int i = 0; i < worksheets.size(); i++)
         {
-            //Seleccionamos TODAS las hojas de 1 en 1 (reccoriendo la lista)
+            //Seleccionamos TODAS las hojas de 1 en 1 (recorriendo la lista)
             Worksheet worksheet = (Worksheet)worksheets.get(i);
             
             //Ahora seleccionamos el rango (TODO LA HOJA)
@@ -52,6 +51,7 @@ public class FindExcelString
                 //Encontrado
             }
             //Necesita mirar si esa celda tiene celda siguiente
+            //¿esto deberia ir en un bucle?
             cell = range.findNext();
             if (cell == null)
             {
