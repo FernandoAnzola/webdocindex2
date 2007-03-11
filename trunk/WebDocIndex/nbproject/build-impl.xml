@@ -410,9 +410,13 @@
         <copy-ear-war file="${file.reference.poi-3.0-alpha3-20061212.jar}" propname="included.lib.file.reference.poi-3.0-alpha3-20061212.jar.X"/>
         <basename property="included.lib.file.reference.poi-scratchpad-3.0-alpha3-20061212.jar" file="${file.reference.poi-scratchpad-3.0-alpha3-20061212.jar}"/>
         <copy-ear-war file="${file.reference.poi-scratchpad-3.0-alpha3-20061212.jar}" propname="included.lib.file.reference.poi-scratchpad-3.0-alpha3-20061212.jar.X"/>
+        <basename property="included.lib.file.reference.jexcel-1.0.jar" file="${file.reference.jexcel-1.0.jar}"/>
+        <copy-ear-war file="${file.reference.jexcel-1.0.jar}" propname="included.lib.file.reference.jexcel-1.0.jar.X"/>
+        <basename property="included.lib.file.reference.jniwrap-3.1.jar" file="${file.reference.jniwrap-3.1.jar}"/>
+        <copy-ear-war file="${file.reference.jniwrap-3.1.jar}" propname="included.lib.file.reference.jniwrap-3.1.jar.X"/>
         <mkdir dir="${build.web.dir.real}/META-INF"/>
         <manifest file="${build.web.dir.real}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Class-Path" value="${included.lib.file.reference.activation.jar} ${included.lib.file.reference.commons-fileupload-1.1.jar} ${included.lib.file.reference.cos.jar} ${included.lib.file.reference.FontBox-0.1.0-dev.jar} ${included.lib.file.reference.lucene-core-2.0.0.jar} ${included.lib.file.reference.PDFBox-0.7.3.jar} ${included.lib.file.reference.poi-3.0-alpha3-20061212.jar} ${included.lib.file.reference.poi-scratchpad-3.0-alpha3-20061212.jar} "/>
+            <attribute name="Class-Path" value="${included.lib.file.reference.activation.jar} ${included.lib.file.reference.commons-fileupload-1.1.jar} ${included.lib.file.reference.cos.jar} ${included.lib.file.reference.FontBox-0.1.0-dev.jar} ${included.lib.file.reference.lucene-core-2.0.0.jar} ${included.lib.file.reference.PDFBox-0.7.3.jar} ${included.lib.file.reference.poi-3.0-alpha3-20061212.jar} ${included.lib.file.reference.poi-scratchpad-3.0-alpha3-20061212.jar} ${included.lib.file.reference.jexcel-1.0.jar} ${included.lib.file.reference.jniwrap-3.1.jar} "/>
         </manifest>
         <delete dir="${dist.ear.dir}/temp"/>
     </target>
@@ -425,6 +429,8 @@
         <copy file="${file.reference.PDFBox-0.7.3.jar}" todir="${build.web.dir.real}/WEB-INF/lib"/>
         <copy file="${file.reference.poi-3.0-alpha3-20061212.jar}" todir="${build.web.dir.real}/WEB-INF/lib"/>
         <copy file="${file.reference.poi-scratchpad-3.0-alpha3-20061212.jar}" todir="${build.web.dir.real}/WEB-INF/lib"/>
+        <copy file="${file.reference.jexcel-1.0.jar}" todir="${build.web.dir.real}/WEB-INF/lib"/>
+        <copy file="${file.reference.jniwrap-3.1.jar}" todir="${build.web.dir.real}/WEB-INF/lib"/>
     </target>
     <target name="do-ear-dist" depends="init,compile,compile-jsps,-pre-dist,library-inclusion-in-manifest">
         <dirname property="dist.jar.dir" file="${dist.ear.war}"/>
