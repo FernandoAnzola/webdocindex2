@@ -23,7 +23,7 @@ import org.apache.lucene.document.Document;
  * @author Administrador
  * @version
  */
-public class search extends HttpServlet {
+public class search extends BaseServlet {
     
     /** Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request

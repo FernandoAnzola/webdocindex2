@@ -18,7 +18,7 @@ import myclasses.User;
  * @author javier
  * @version
  */
-public class signup extends HttpServlet {
+public class signup extends BaseServlet {
     
     /** Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -112,7 +112,7 @@ public class signup extends HttpServlet {
             password2=request.getParameter("password2");
         if((email1.length()>5)&&(password1.length()>=5)&&(password1.length()<=12))
         {
-            if((email1.compareTo(email2)==0)&&(password1.compareTo(password2)==0))
+            if((email1.compareTo(email2)==0)&&(password1.compareTo(password2)==0)&&(checkEmail(email1)))
             {
                 User u = new User(email1,password1);
                 if(u.saveToDb())

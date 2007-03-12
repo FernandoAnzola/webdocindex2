@@ -17,7 +17,7 @@ import myclasses.User;
  * @author javier
  * @version
  */
-public class login extends HttpServlet {
+public class login extends BaseServlet {
     
     /** Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request

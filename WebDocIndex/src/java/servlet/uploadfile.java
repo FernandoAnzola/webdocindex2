@@ -22,7 +22,7 @@ import lucene.MyDocSearch;
  * @author javier
  * @version
  */
-public class uploadfile extends HttpServlet {
+public class uploadfile extends BaseServlet {
     
     /** Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
