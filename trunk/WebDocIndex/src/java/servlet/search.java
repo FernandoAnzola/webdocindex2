@@ -29,7 +29,7 @@ public class search extends BaseServlet {
      * @param request servlet request
      * @param response servlet response
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response, Vector <MyDocument> documents)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response, Vector <MyDocument> documents, boolean busqueda)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -54,8 +54,14 @@ public class search extends BaseServlet {
         out.println("<td width=\"85%\"><input name=\"Submit\" id=\"submit\" type=\"submit\" value=\"Buscar\"  /></td>");
         out.println("</tr>");
         out.println("</table>");
-        if(documents!=null)
-            out.println(printDocuments(documents));
+        if((documents!=null)&&(busqueda==true))
+        {
+            if(documents.size()>0)
+                out.println(printDocuments(documents));
+            else
+                out.println("<p>ERROR! No existe la palabra en nuestros indices!!!</p>");
+                
+        }
         out.println("</form>");
         out.println("</body>");
         out.println("</html>");
@@ -69,7 +75,7 @@ public class search extends BaseServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response,null);
+        processRequest(request, response,null,false);
     }
     
     /** Handles the HTTP <code>POST</code> method.
@@ -83,7 +89,7 @@ public class search extends BaseServlet {
             query=request.getParameter("query");
         MyDocSearch mysearch = new MyDocSearch();
         Vector <MyDocument> documents = mysearch.search(query);
-        processRequest(request, response, documents);
+        processRequest(request, response, documents,true);
     }
     
     private String printDocuments(Vector <MyDocument> documents)
