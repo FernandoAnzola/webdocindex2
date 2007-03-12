@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
+import myclasses.MyDbConnector;
 
 /**
  *
@@ -64,6 +65,36 @@ public class BaseServlet extends HttpServlet  {
             return true;
         else
             return false;
+    }
+    
+    public boolean checkSession(HttpSession session, String sessionName)
+    {
+        if (session.isNew()||session.getAttribute(sessionName)==null||estaSessionBD(session.getId())==false)
+        {
+            session.invalidate();
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean estaSessionBD(String session)
+    {
+        return (MyDbConnector.hasNextQuery("select * from sesiones where codigo='"+session+"' "));
+    }
+    
+    public void BorrarSessionInactivas()
+    {
+        java.util.Date actual = new java.util.Date();
+        long tiempo_resta = (15*60*1000);
+        long tiempo_total;
+        tiempo_total = (actual.getTime() - tiempo_resta);
+        MyDbConnector.executeQuery("delete from sesiones where tiempo < "+tiempo_total+"");
+    }
+    
+    public void ActualizarSession(String session)
+    {
+        java.util.Date actual = new java.util.Date();
+        MyDbConnector.executeQuery("update sesiones set tiempo = "+actual.getTime()+" where codigo = '"+session+"' ");
     }
     
 }
