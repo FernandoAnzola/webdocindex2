@@ -10,17 +10,27 @@
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>/WebDocIndex/login.html</td>
+	<td>/WebDocIndex/signup.html</td>
 	<td></td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>email1</td>
-	<td>afrikano@hotmail.com</td>
+	<td>juanjuan@hotmail.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email2</td>
+	<td>juanjuan@hotmail.com</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>password1</td>
+	<td>12345</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password2</td>
 	<td>12345</td>
 </tr>
 <tr>
@@ -30,7 +40,7 @@
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>Acceso valido!!!</td>
+	<td>Usuario Registrado con Exito!!</td>
 	<td></td>
 </tr>
 

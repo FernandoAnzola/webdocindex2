@@ -10,18 +10,28 @@
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>/WebDocIndex/login.html</td>
+	<td>/WebDocIndex/signup.html</td>
 	<td></td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>email1</td>
-	<td>afrikano@hotmail.com</td>
+	<td>juan</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email2</td>
+	<td>juan</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>password1</td>
-	<td>1234</td>
+	<td>12345</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password2</td>
+	<td>12345</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -30,7 +40,7 @@
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>Acceso valido!!!</td>
+	<td>Los datos introducidos no son validos. Compruebe que coinciden!!</td>
 	<td></td>
 </tr>
 
