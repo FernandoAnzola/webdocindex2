@@ -45,7 +45,7 @@ public class MyDocIndex {
         {
             //true si queremos q se cree de nuevo y false sino
             writer = new IndexWriter(INDEX_DIR, new StandardAnalyzer(), false);
-        } //RICHAD ES UN PALOMO COJO
+        } 
         catch (IOException ex) 
         {
             ex.printStackTrace();
