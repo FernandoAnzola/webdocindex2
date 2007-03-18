@@ -27,42 +27,47 @@ public class login extends BaseServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>Servlet login</title>");
-        out.println("</head>");
-        out.println("<body>");
+        out.println(printTop("WebDocIndex"));
+        
+        out.println("<p>&nbsp;</p>");
         out.println("<h1>Introduce tus datos de usuario para acceder</h1>");
-        out.println("<form name=\"formLogin\" method=\"post\" action=\"login.html\" >");
-        out.println("<input name=\"type\" type=\"hidden\" id=\"type\" value=\"login\" />");
-        out.println("<table width=\"100%\"  border=\"0\" cellspacing=\"4\" cellpadding=\"0\">");
+        out.println("<p>&nbsp;</p>");
+        out.println("<p>&nbsp;</p>");
+        out.println("<form name='formLogin' method='post' action='login.html' >");
+        out.println("<input name='type' type='hidden' id='type' value='login' />");
+        out.println("<table width='500'   border='0' cellspacing='4' cellpadding='0' align='center'  >");
         
-        out.println("<tr valign=\"top\">");
-        out.println("<td width=\"15%\"><strong>Email:</strong></td>");
-        out.println("<td width=\"85%\"><input name=\"email1\" type=\"text\" class=\"formulario\" size=\"50\" maxlength=\"100\"/></td>");
+        out.println("<tr valign='top'>");
+        out.println("<td width='15%'><strong>Email:</strong></td>");
+        out.println("<td width='85%'><input name='email1' type='text' class='formulario_blanco' size='50' maxlength='100'/></td>");
         out.println("</tr>");
         
-        out.println("<tr valign=\"top\">");
-        out.println("<td width=\"15%\"><strong>Password:</strong></td>");
-        out.println("<td width=\"85%\"><input name=\"password1\" type=\"password\" class=\"formulario\" size=\"50\" maxlength=\"100\"/></td>");
+        out.println("<tr valign='top'>");
+        out.println("<td width='15%'><strong>Password:</strong></td>");
+        out.println("<td width='85%'><input name='password1' type='password' class='formulario_blanco' size='50' maxlength='100'/></td>");
         out.println("</tr>");
         
-        out.println("<tr valign=\"top\">");
-        out.println("<td width=\"15%\"></td>");
-        out.println("<td width=\"85%\"><input name=\"Submit\" id=\"submit\" type=\"submit\" class=\"boton\" value=\"Entrar\"  /></td>");
-        out.println("</tr>");
-        out.println("</table>");
-        if(estado==1)
-        {
-            out.println("<p>Acceso valido!!!</p>");
-        }
         if(estado==2)
         {
-            out.println("<p>Acceso NO valido!!!</p>");
+            out.println("<tr valign='top'>");
+            out.println("<td width='15%'></td>");
+            out.println("<td width='85%'>");
+            out.println(printError("El E-Mail y/o Password no son validos.",400));
+            out.println("</td></tr>");
         }
+        
+        out.println("<tr valign='top'>");
+        out.println("<td width='15%'></td>");
+        out.println("<td width='85%'><input name='Submit' id='submit' type='submit' class='boton' value='Entrar'  /></td>");
+        out.println("</tr>");
+        out.println("</table>");
         out.println("</form>");
-        out.println("</body>");
-        out.println("</html>");
+        
+        out.println("<p>&nbsp;</p>");
+        out.println("<p>&nbsp;</p>");
+        out.println("<p>&nbsp;</p>");
+        out.println(printBottom());
+        
         out.close();
     }
     
