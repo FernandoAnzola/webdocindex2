@@ -23,7 +23,7 @@ import myclasses.MyDbConnector;
  *
  * @author javier
  */
-public class BaseServlet extends HttpServlet  {
+public class BaseServlet extends Headers  {
     
     public void destroy() 
     {
