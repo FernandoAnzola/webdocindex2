@@ -94,7 +94,8 @@ public class MyDocIndex {
                 writer.close();
                 return true;
             }
-        } catch (IOException ex) {
+        } 
+        catch (IOException ex) {
             ex.printStackTrace();
         }
         return false;
@@ -102,11 +103,11 @@ public class MyDocIndex {
     
     private Document luneneDocument (String path, String texto, File f)
     {
-            doc = new Document ();
-            doc.add(new Field("path", path, Field.Store.YES, Field.Index.UN_TOKENIZED));
-            doc.add(new Field("modified",DateTools.timeToString(f.lastModified(), DateTools.Resolution.MINUTE),Field.Store.YES, Field.Index.UN_TOKENIZED));
-            doc.add(new Field("contents", texto, Field.Store.YES,Field.Index.TOKENIZED));
-            return doc;
+        doc = new Document ();
+        doc.add(new Field("path", path, Field.Store.YES, Field.Index.UN_TOKENIZED));
+        doc.add(new Field("modified",DateTools.timeToString(f.lastModified(), DateTools.Resolution.MINUTE),Field.Store.YES, Field.Index.UN_TOKENIZED));
+        doc.add(new Field("contents", texto, Field.Store.YES,Field.Index.TOKENIZED));
+        return doc;
     }
     
    
