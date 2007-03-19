@@ -29,51 +29,64 @@ public class signup extends BaseServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>Servlet signup</title>");
-        out.println("</head>");
-        out.println("<body>");
+        out.println(printTop("WebDocIndex"));
+        out.println("<p>&nbsp;</p>");
+        out.println("<p>&nbsp;</p>");
         out.println("<h1>Introduce tus datos de usuario</h1>");
-        out.println("<form name=\"formLogin\" method=\"post\" action=\"signup.html\" >");
-        out.println("<input name=\"type\" type=\"hidden\" id=\"type\" value=\"login\" />");
-        out.println("<table width=\"100%\"  border=\"0\" cellspacing=\"4\" cellpadding=\"0\">");
-        out.println("<tr valign=\"top\">");
-        out.println("<td width=\"15%\"><strong>Email:</strong></td>");
-        out.println("<td width=\"85%\"><input name=\"email1\" type=\"text\" class=\"formulario\" size=\"50\" maxlength=\"100\"/></td>");
+        out.println("<p>&nbsp;</p>");
+        out.println("<form name='formLogin' method='post' action='signup.html' >");
+        out.println("<input name='type' type='hidden' id='type' value='login' />");
+        out.println("<table width='600'   border='0' cellspacing='4' cellpadding='0' align='center'  >");
+        out.println("<tr valign='top'>");
+        out.println("<td width='15%'><strong>Email:</strong></td>");
+        out.println("<td width='85%'><input name='email1' type='text' class='formulario_blanco' size='50' maxlength='100'/></td>");
         out.println("</tr>");
-        out.println("<tr valign=\"top\">");
-        out.println("<td width=\"15%\"><strong>Email (Repetir):</strong></td>");
-        out.println("<td width=\"85%\"><input name=\"email2\" type=\"text\" class=\"formulario\" size=\"50\" maxlength=\"100\"/></td>");
+        out.println("<tr valign='top'>");
+        out.println("<td width='15%'><strong>Email (Repetir):</strong></td>");
+        out.println("<td width='85%'><input name='email2' type='text' class='formulario_blanco' size='50' maxlength='100'/></td>");
         out.println("</tr>");
-        out.println("<tr valign=\"top\">");
-        out.println("<td width=\"15%\"><strong>Password:</strong></td>");
-        out.println("<td width=\"85%\"><input name=\"password1\" type=\"password\" class=\"formulario\" size=\"50\" maxlength=\"100\"/></td>");
+        out.println("<tr valign='top'>");
+        out.println("<td width='15%'><strong>Password:</strong></td>");
+        out.println("<td width='85%'><input name='password1' type='password' class='formulario_blanco' size='50' maxlength='100'/></td>");
         out.println("</tr>");
-        out.println("<tr valign=\"top\">");
-        out.println("<td width=\"15%\"><strong>Password (Repetir):</strong></td>");
-        out.println("<td width=\"85%\"><input name=\"password2\" type=\"password\" class=\"formulario\" size=\"50\" maxlength=\"100\"/></td>");
+        out.println("<tr valign='top'>");
+        out.println("<td width='15%'><strong>Password (Repetir):</strong></td>");
+        out.println("<td width='85%'><input name='password2' type='password' class='formulario_blanco' size='50' maxlength='100'/></td>");
         out.println("</tr>");
-        out.println("<tr valign=\"top\">");
-        out.println("<td width=\"15%\"></td>");
-        out.println("<td width=\"85%\"><input name=\"Submit\" id=\"submit\" type=\"submit\" class=\"boton\" value=\"Guardar\"  /></td>");
-        out.println("</tr>");
-        out.println("</table>");
         if(estado==1)
         {
-            out.println("<p>Usuario Registrado con Exito!!</p>");
+            out.println("<tr valign='top'>");
+            out.println("<td width='15%'></td>");
+            out.println("<td width='85%'>");
+            out.println(printOk("La operacion se ha producido con exito.",400));
+            out.println("</td></tr>");
         }
         if(estado==2)
         {
-            out.println("<p>No se ha podido guardar el Usuario!!</p>");
+            out.println("<tr valign='top'>");
+            out.println("<td width='15%'></td>");
+            out.println("<td width='85%'>");
+            out.println(printError("No se ha podido completar la operacion.",400));
+            out.println("</td></tr>");
         }
         if(estado==3)
         {
-            out.println("<p>Los datos introducidos no son validos. Compruebe que coinciden!!</p>");
+            out.println("<tr valign='top'>");
+            out.println("<td width='15%'></td>");
+            out.println("<td width='85%'>");
+            out.println(printError("Los datos introducidos no son validos.",400));
+            out.println("</td></tr>");
         }
-        out.println("</form>");
-        out.println("</body>");
-        out.println("</html>");
+        out.println("<tr valign='top'>");
+        out.println("<td width='15%'></td>");
+        out.println("<td width='85%'><input name='Submit' id='submit' type='submit' class='boton' value='Guardar'  /></td>");
+        out.println("</tr>");
+        out.println("</table>");
+        out.println("</form>");        
+        out.println("<p>&nbsp;</p>");
+        out.println("<p>&nbsp;</p>");
+        out.println("<p>&nbsp;</p>");
+        out.println(printBottom());
          
         out.close();
     }
