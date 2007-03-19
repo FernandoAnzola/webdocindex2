@@ -23,8 +23,7 @@ public class User {
     }
     
     public User(String email, String password) {
-        this.setEmail(email);
-        this.setPassword(password);
+        this.readFromDb(email,password);
     }
     
     private String email=null;
@@ -47,20 +46,14 @@ public class User {
         this.id_usuario = id_usuario;
     }
     
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
     
-    public boolean saveToDb()
+    public boolean saveToDb(String email, String password)
     {
-        return MyDbConnector.executeQuery("insert into usuarios (email,password)values('"+this.getEmail()+"',AES_ENCRYPT('"+this.getPassword()+"','"+Config.getDbKey()+"'))");
+        this.setEmail(email);
+        return MyDbConnector.executeQuery("insert into usuarios (email,password)values('"+email+"',AES_ENCRYPT('"+password+"','"+Config.getDbKey()+"'))");
     }
     
-    public void readFromDb(int id_usuario)
+    public boolean readFromDb(int id_usuario)
     {
         Connection conn=null;
         Statement stmt=null;
@@ -69,12 +62,12 @@ public class User {
         {
             conn = MyDbConnector.getConn();
             stmt = conn.createStatement();
-            rset = stmt.executeQuery("select * from usuarios where id_usuario="+this.getId_usuario()+" " );
+            rset = stmt.executeQuery("select * from usuarios where id_usuario="+id_usuario+" " );
             if (rset.next())//hay q crear un tabla con el estado //1 valido 2 signup2 3 signup3 ...
             {
                 this.setId_usuario(rset.getInt("id_usuario"));
                 this.setEmail(rset.getString("email"));
-                this.setPassword(null);
+                return true;
             }
         }
         catch (SQLException ex) //sino puede conectar muestra una pagina donde dice que no puede conectar
@@ -87,11 +80,42 @@ public class User {
             if (stmt != null) {try {stmt.close();} catch (SQLException e) {}stmt=null;}
             if (conn != null) {try {conn.close();} catch (SQLException e) {}conn=null;}
         }
+        return false;
+    }
+    
+    public boolean readFromDb(String email, String password)
+    {
+        Connection conn=null;
+        Statement stmt=null;
+        ResultSet rset=null;
+        try 
+        {
+            conn = MyDbConnector.getConn();
+            stmt = conn.createStatement();
+            rset = stmt.executeQuery("select * from usuarios where email='"+email+"' and password=AES_ENCRYPT('"+password+"','"+Config.getDbKey()+"') ");
+            if (rset.next())//hay q crear un tabla con el estado //1 valido 2 signup2 3 signup3 ...
+            {
+                this.setId_usuario(rset.getInt("id_usuario"));
+                this.setEmail(rset.getString("email"));
+                return true;
+            }    
+        }
+        catch (SQLException ex) //sino puede conectar muestra una pagina donde dice que no puede conectar
+        {
+            ex.printStackTrace();
+        }
+        finally 
+        {
+            if (rset != null){try {rset.close();} catch (SQLException e) {}rset=null;}
+            if (stmt != null) {try {stmt.close();} catch (SQLException e) {}stmt=null;}
+            if (conn != null) {try {conn.close();} catch (SQLException e) {}conn=null;}
+        }
+        return false;
     }
     
     public boolean isValid()
     {
-        return MyDbConnector.hasNextQuery("select * from usuarios where email='"+this.getEmail()+"' and password=AES_ENCRYPT('"+this.getPassword()+"','"+Config.getDbKey()+"') ");
+        return MyDbConnector.hasNextQuery("select * from usuarios where email='"+this.getEmail()+"' ");
     }
     
     public boolean addDocument(MyDocument doc)
