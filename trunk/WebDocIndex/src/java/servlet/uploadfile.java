@@ -75,7 +75,16 @@ public class uploadfile extends BaseServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response,0);
+        if(!checkSession(request.getSession(),"webdocindex.session"))
+        {
+            borrarSesionInactivas(); //Elimina las sesiones inactivas que estan en la base de datos
+            actualizarSesion("webdocindex.session"); //Actualiza el tiempo de las sesiones que son validas.
+            processRequest(request, response,0);
+        }
+        else
+        {
+            safeRedirect(response,"login.html");
+        }
     }
     
     /** Handles the HTTP <code>POST</code> method.
@@ -84,10 +93,21 @@ public class uploadfile extends BaseServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        if(saveFile(request))
-            processRequest(request, response,1); //exito
+        if(!checkSession(request.getSession(),"webdocindex.session"))
+        {
+            if(saveFile(request))
+            {
+                processRequest(request, response,1); //exito
+            }
+            else
+            {
+                processRequest(request, response,2); //fallo
+            }
+        }
         else
-            processRequest(request, response,2); //fallo
+        {
+            safeRedirect(response,"login.html");
+        }
     }
     
     private boolean saveFile(HttpServletRequest request)

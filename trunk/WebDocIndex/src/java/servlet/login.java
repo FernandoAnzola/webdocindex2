@@ -94,9 +94,10 @@ public class login extends BaseServlet {
         if(request.getParameter("password1")!=null)
             password1=request.getParameter("password1");
         
-        User u = new User(email1,password1);
-        if(u.isValid())
+        User u = new User();
+        if(u.readFromDb(email1,password1))
         {
+            nuevaSession(u, request.getSession(), request.getRemoteAddr(),"webdocindex.session");
             processRequest(request, response,1); //exito
         }
         else
