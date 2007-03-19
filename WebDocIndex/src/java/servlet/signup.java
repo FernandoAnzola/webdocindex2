@@ -126,8 +126,8 @@ public class signup extends BaseServlet {
         {
             if((email1.compareTo(email2)==0)&&(password1.compareTo(password2)==0)&&(checkEmail(email1)))
             {
-                User u = new User(email1,password1);
-                if(u.saveToDb())
+                User u = new User();
+                if(u.saveToDb(email1,password1))
                 {
                     processRequest(request, response,1); //exito
                 }

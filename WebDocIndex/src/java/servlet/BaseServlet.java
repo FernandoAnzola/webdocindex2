@@ -18,6 +18,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 import myclasses.MyDbConnector;
+import myclasses.User;
 
 /**
  *
@@ -77,24 +78,44 @@ public class BaseServlet extends Headers  {
         return false;
     }
     
-    public boolean estaSessionBD(String session)
+    public boolean estaSessionBD(String id_session)
     {
-        return (MyDbConnector.hasNextQuery("select * from sesiones where codigo='"+session+"' "));
+        return (MyDbConnector.hasNextQuery("select * from sesiones where codigo='"+id_session+"' "));
     }
     
-    public void BorrarSessionInactivas()
+    public boolean borrarSesionInactivas()
     {
         java.util.Date actual = new java.util.Date();
         long tiempo_resta = (15*60*1000);
         long tiempo_total;
         tiempo_total = (actual.getTime() - tiempo_resta);
-        MyDbConnector.executeQuery("delete from sesiones where tiempo < "+tiempo_total+"");
+        return MyDbConnector.executeQuery("delete from sesiones where tiempo < "+tiempo_total+"");
     }
     
-    public void ActualizarSession(String session)
+    public boolean actualizarSesion(String session)
     {
         java.util.Date actual = new java.util.Date();
-        MyDbConnector.executeQuery("update sesiones set tiempo = "+actual.getTime()+" where codigo = '"+session+"' ");
+        return MyDbConnector.executeQuery("update sesiones set tiempo = "+actual.getTime()+" where codigo = '"+session+"' ");
+    }
+    
+    public boolean nuevaSession(User u, HttpSession session, String ip, String sessionName)
+    {
+       
+       MyDbConnector.executeQuery("delete from sesiones where id_usuario="+u.getId_usuario()+" "); //borro las sessiones que puedan estar activas del mismo usuario
+       MyDbConnector.executeQuery("insert into sesiones(codigo,ip,tiempo,id_usuario)values('"+session.getId()+"','"+ip+"',"+session.getCreationTime()+","+u.getId_usuario()+")");
+       //creo variables de session para guardar datos sobre el usuario
+       session.setAttribute(sessionName,u);
+       return true;
+    }
+    
+    public void safeRedirect( HttpServletResponse response, String url)throws IOException
+    {
+        response.sendRedirect(response.encodeRedirectURL(url));
+    }
+    
+    public String safeURL( HttpServletResponse response, String url) throws IOException
+    {
+        return response.encodeURL(url);
     }
     
 }
