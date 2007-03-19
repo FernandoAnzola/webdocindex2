@@ -32,25 +32,24 @@ public class uploadfile extends BaseServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>Servlet login</title>");
-        out.println("</head>");
-        out.println("<body>");
-        out.println("<h1>Subir un fichero</h1>");
+        out.println(printTop("WebDocIndex"));
         
-        out.println("<form action=\"uploadfile.html\" method=\"post\" enctype=\"multipart/form-data\" name=\"form2\" id=\"form2\">");
-        out.println("<input name=\"type\" type=\"hidden\" id=\"type\" value=\"login\" />");
-        out.println("<table width=\"100%\"  border=\"0\" cellspacing=\"4\" cellpadding=\"0\">");
+        out.println("<p>&nbsp;</p>");
+        out.println("<h1>Sube un fichero!</h1>");
+        out.println("<p>&nbsp;</p>");
         
-        out.println("<tr valign=\"top\">");
-        out.println("<td width=\"15%\"><strong>Fichero:</strong></td>");
-        out.println("<td width=\"85%\"><input name=\"file\" type=\"file\" size=\"70\"/></td>");
+        out.println("<form action='uploadfile.html' method='post' enctype='multipart/form-data' name='form2' id='form2'>");
+        out.println("<input name='type' type='hidden' id='type' value='login' />");
+        out.println("<table width='600'   border='0' cellspacing='4' cellpadding='0' align='center'  >");
+        
+        out.println("<tr valign='top'>");
+        out.println("<td width='15%'><strong>Fichero:</strong></td>");
+        out.println("<td width='85%'><input name='file' type='file' size='70'/></td>");
         out.println("</tr>");
         
-        out.println("<tr valign=\"top\">");
-        out.println("<td width=\"15%\"></td>");
-        out.println("<td width=\"85%\"><input name=\"Submit\" id=\"submit\" type=\"submit\" class=\"boton\" value=\"Subir fichero\"  /></td>");
+        out.println("<tr valign='top'>");
+        out.println("<td width='15%'></td>");
+        out.println("<td width='85%'><input name='Submit' id='submit' type='submit' class='boton' value='Subir fichero'  /></td>");
         out.println("</tr>");
         out.println("</table>");
         if(estado==1)
@@ -62,8 +61,10 @@ public class uploadfile extends BaseServlet {
             out.println("<p>No se ha podido guardar el archivo!!.No es un fichero valido para indexar!!</p>");
         }
         out.println("</form>");
-        out.println("</body>");
-        out.println("</html>");
+        out.println("<p>&nbsp;</p>");
+        out.println("<p>&nbsp;</p>");
+        out.println("<p>&nbsp;</p>");
+        out.println(printBottom());
         out.close();
     }
     
