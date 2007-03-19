@@ -33,29 +33,29 @@ public class search extends BaseServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>Servlet login</title>");
-        out.println("</head>");
-        out.println("<body>");
-        out.println("<h1>Introduce tu busqueda</h1>");
-        out.println("<form name=\"formLogin\" method=\"post\" action=\"search.html\" >");
-        out.println("<input name=\"type\" type=\"hidden\" id=\"type\" value=\"search\" />");
-        out.println("<table width=\"100%\"  border=\"0\" cellspacing=\"4\" cellpadding=\"0\">");
+        out.println(printTop("WebDocIndex"));
         
-        out.println("<tr valign=\"top\">");
-        out.println("<td width=\"15%\"><strong>Buscar:</strong></td>");
-        out.println("<td width=\"85%\"><input name=\"query\" type=\"text\" size=\"50\" maxlength=\"100\"/></td>");
+        out.println("<p>&nbsp;</p>");
+        out.println("<h1>Introduce tu busqueda!</h1>");
+        out.println("<p>&nbsp;</p>");
+        out.println("<form name='formLogin' method='post' action='search.html' >");
+        out.println("<input name='type' type='hidden' id='type' value='search' />");
+        out.println("<table width='600'   border='0' cellspacing='4' cellpadding='0' align='center'  >");
+        
+        out.println("<tr valign='top'>");
+        out.println("<td width='15%'><strong>Buscar:</strong></td>");
+        out.println("<td width='85%'><input name='query' type='text' size='50' maxlength='100'/></td>");
         out.println("</tr>");
         
         
-        out.println("<tr valign=\"top\">");
-        out.println("<td width=\"15%\"></td>");
-        out.println("<td width=\"85%\"><input name=\"Submit\" id=\"submit\" type=\"submit\" value=\"Buscar\"  /></td>");
+        out.println("<tr valign='top'>");
+        out.println("<td width='15%'></td>");
+        out.println("<td width='85%'><input name='Submit' id='submit' type='submit' value='Buscar'  /></td>");
         out.println("</tr>");
         out.println("</table>");
         if((documents!=null)&&(busqueda==true))
         {
+            out.println("<h1>Resultados</h1>");
             if(documents.size()>0)
                 out.println(printDocuments(documents));
             else
@@ -63,8 +63,10 @@ public class search extends BaseServlet {
                 
         }
         out.println("</form>");
-        out.println("</body>");
-        out.println("</html>");
+        out.println("<p>&nbsp;</p>");
+        out.println("<p>&nbsp;</p>");
+        out.println("<p>&nbsp;</p>");
+        out.println(printBottom());
         out.close();
     }
     
@@ -99,7 +101,7 @@ public class search extends BaseServlet {
         {
             Document d=doc.getDoc();
             
-            aux+="<p><a href=\"file:///"+d.get("path")+" \"><strong>"+d.get("path")+"</strong></a></p>";
+            aux+="<p><a href=\"file:///"+d.get("path")+" \"><strong class='tam14'>"+d.get("path")+"</strong></a></p>";
             aux+="<p>Acierto: <strong>"+(doc.getScore()*100)+" %</strong></p>";
             Enumeration fields=d.fields();
             if(d.get("path")!=null)
@@ -126,6 +128,7 @@ public class search extends BaseServlet {
                 aux+="<p>Title:"+d.get("Title")+"</p>";
             if(d.get("summary")!=null)
                 aux+="<p>summary:"+d.get("summary")+"</p>";
+            aux+="<p>&nbsp;</p>";
         }
         return aux;
     }
