@@ -12,6 +12,7 @@ CREATE TABLE documentos (
   id_usuario INTEGER UNSIGNED NOT NULL,
   url VARCHAR(100) NOT NULL,
   descripcion VARCHAR(500),
+  doc BLOB NOT NULL,
   PRIMARY KEY(id_documento)
 )ENGINE = InnoDB;
 
