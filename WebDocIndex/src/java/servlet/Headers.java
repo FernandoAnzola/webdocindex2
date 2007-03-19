@@ -36,7 +36,7 @@ public class Headers extends HttpServlet {
         aux+="<div class='principal'>";
         aux+="<p align='center' class='tam72 Estilo1'>WebDocIndex</p>";
         aux+="<hr>";
-        aux+="<p align='right'><a href='acceder'><strong>Acceder</strong></a> | <a href='regsitrate'><strong>Registrate</strong></a></p>";
+        aux+="<p align='right'><a href='login.html'><strong>Acceder</strong></a> | <a href='signup.html'><strong>Registrate</strong></a></p>";
         aux+="<p>&nbsp;</p>";
         aux+="<p>&nbsp;</p>";
         
