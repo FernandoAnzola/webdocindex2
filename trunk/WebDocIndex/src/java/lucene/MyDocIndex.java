@@ -1,4 +1,7 @@
+
 package lucene;
+//librerias excel
+import lucene.ExcelIndexer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -20,21 +23,8 @@ import org.apache.poi.hwpf.extractor.WordExtractor;
 //Librerias para indexar pdf
 import org.pdfbox.searchengine.lucene.LucenePDFDocument;
 import org.pdfbox.searchengine.lucene.IndexFiles;
-//librerias para importar ppt
 
-/*
- * MyDocIndex.java
- *
- * Created on 26 de febrero de 2007, 13:24
- *
- * To change this template, choose Tools | Template Manager
- * and open the template in the editor.
- */
 
-/**
- *
- * @author Administrador
- */
 public class MyDocIndex {
     
     /** Creates a new instance of MyDocIndex */
@@ -57,7 +47,7 @@ public class MyDocIndex {
     {   
         String path = f.getPath();
         try 
-        {    
+        {   
             Document doc = null;
             if(path.endsWith(".pdf"))
             {
@@ -82,6 +72,12 @@ public class MyDocIndex {
             else if(path.endsWith(".txt"))
             {
                 doc=FileDocument.Document(f);
+            }
+            else if(path.endsWith(".xls"))
+            {
+                /*
+                String cont=new ExcelIndexer().getContent();
+                */
             }
             else
             {
